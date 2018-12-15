@@ -37,9 +37,10 @@ $(function() {
     });
     queryHistory();
     /*2. 查询搜索记录
-    	  1. 获取本地存储中存储的数据
+    	1. 获取本地存储中存储的数据
         2. 创建一个模板去生成html
-        3. 渲染到搜索历史列表*/
+        3. 渲染到搜索历史列表
+    */
     function queryHistory() {
         // 1. 获取本地存储中的数据 没有值设置为空数组
         var historyData = JSON.parse(localStorage.getItem('searchHistory')) || [];
@@ -56,7 +57,8 @@ $(function() {
 	    2. 获取当前点击x的删掉元素的索引
 	    3. 获取整个记录 删掉当前索引的元素
 	    4. 删除完成后重新把数组保存到本地存储中
-	    5. 重新查询刷新页面*/
+	    5. 重新查询刷新页面
+    */
     // 1. 给所有x按钮添加点击事件
     $('.search-history .mui-table-view').on('tap', '.btn-delete', function() {
         // 2. 获取当前点击x的删除的元素的索引

@@ -84,10 +84,10 @@ body {
         text-align: center;
         line-height: 0.45rem;
         color: #fff;
-        &:first-of-type {
+        &:first-child {
             left: 0;
         }
-        &:last-of-type {
+        &:last-child {
             right: 0;
         }
     }
@@ -175,9 +175,16 @@ body {
                 }
                 .product-name{
                     /* 限制只显示2行文字超出隐藏 */
-                    height: 28px;
+                    /* 改成弹性伸缩盒子模型 */
+                    display: -webkit-box;
+                    /* 伸缩盒子方向 垂直方向 */
+                    -webkit-box-orient: vertical;
+                    /* 设置文字显示的行数 */
+                    -webkit-line-clamp: 3;
+                    /* 超出部分隐藏 */
                     overflow: hidden;
-                    line-height: 0.14rem;
+                    /* 文本超出后显示... */
+                    text-overflow:ellipsis;
                 }
             }
         }
