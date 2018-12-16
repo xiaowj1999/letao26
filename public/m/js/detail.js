@@ -87,12 +87,19 @@ $(function() {
         					console.log(e);
         					if(e.index == 0){
         						//点击了左边 跳转到购物车查看
+                                location = 'cart.html';
         					}else{
         						// 点击否就不看 表示还继续吗
         						mui.toast('你继续加一件就可以脱离单身了！', { duration: 3000, type: 'div' });
         					}
         				});
-        			}
+        			}else{
+                        // 9. 加入失败表示未登录  跳转到登录页面 指定当前登录成功要返回的页面 返回当前的详情页面
+                        console.log(location);
+                        // location = 'login.html?returnUrl='+'http://localhost:3000/m/detail.html?id=1';
+                        // location.href 就是当前页面的url
+                        location = 'login.html?returnUrl='+location.href;
+                    }
         		}
         })
     });
