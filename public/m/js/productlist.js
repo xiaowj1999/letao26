@@ -30,6 +30,14 @@ $(function() {
         // 3. 根据当前输入的search发送请求渲染页面
         $.ajax({
             url: '/product/queryProduct',
+            beforeSend: function() { // 请求之前会触发的回调函数
+                // 请求之前显示遮罩层
+                $('.mask').show();
+            },
+            complete: function() { // 请求之后会触发函数
+                // 请求之后隐藏遮罩层
+                $('.mask').hide();
+            },
             // page 第几页 pageSize 每页大小 proName搜索关键字
             data: { page: 1, pageSize: 4, proName: search },
             success: function(data) {

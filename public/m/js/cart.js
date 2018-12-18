@@ -230,7 +230,7 @@ $(function() {
         });
         // 7. 等到代码放到确认框后再初始化 尺码 和 数量
         // 7.1 数字框也是动态添加要手动初始化  但这个时候只是能点击 还没有值
-        mui('.mui-numbox').numbox();
+        // mui('.mui-numbox').numbox()
         // 7.2 初始化的时候 默认给赋值为当前选择的数量
         mui('.mui-numbox').numbox().setValue(product.num);
         // 7.3 尺码默认也是不能点击的手动初始化
@@ -245,6 +245,14 @@ $(function() {
         $.ajax({
             url: '/cart/queryCartPaging',
             data: { page: 1, pageSize: 4 },
+            beforeSend: function() { // 请求之前会触发的回调函数
+                // 请求之前显示遮罩层
+                $('.mask').show();
+            },
+            complete: function() { // 请求之后会触发函数
+                // 请求之后隐藏遮罩层
+                $('.mask').hide();
+            },
             success: function(data) {
                 // 判断当前返回数据是否报错 报错表示未登录 跳转到登录页面
                 if (data.error) {

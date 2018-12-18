@@ -5,12 +5,20 @@ $(function() {
     });
 
     /*1. 分类左侧的动态数据渲染
-    	1. 使用ajax请求分类左侧的API接口 /category/queryTopCategory
-    	2. 拿到数据 创建数据的模板
-    	3. 调用模板方法生成html结构
-    	4. 把html放到页面上*/
+        1. 使用ajax请求分类左侧的API接口 /category/queryTopCategory
+        2. 拿到数据 创建数据的模板
+        3. 调用模板方法生成html结构
+        4. 把html放到页面上*/
     $.ajax({
         url: '/category/queryTopCategory',
+        beforeSend: function() { // 请求之前会触发的回调函数
+            // 请求之前显示遮罩层
+            $('.mask').show();
+        },
+        complete: function() { // 请求之后会触发函数
+            // 请求之后隐藏遮罩层
+            $('.mask').hide();
+        },
         // dataType:'json', 默认值就是把字符串 转成JS对象
         success: function(data) {
             console.log(data);
@@ -35,11 +43,20 @@ $(function() {
     });
     // 默认调用请求数据的函数 传入id为1
     querySecondCategory(1);
+
     function querySecondCategory(id) {
         // 3. 根据当前点击id去请求右侧分类的数据
         $.ajax({
             url: '/category/querySecondCategory',
             data: { id: id },
+            beforeSend: function() { // 请求之前会触发的回调函数
+                // 请求之前显示遮罩层
+                $('.mask').show();
+            },
+            complete: function() { // 请求之后会触发函数
+                // 请求之后隐藏遮罩层
+                $('.mask').hide();
+            },
             success: function(data) {
                 // 4. 调用分类右侧模板
                 var html = template('categoryRightTpl', data);
